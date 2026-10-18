@@ -1,0 +1,11 @@
+# Xcode (el proyecto se genera con XcodeGen)
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+build/
+*.ipa
+*.xcarchive
+*.dSYM.zip
+*.p8
+.DS_Store
