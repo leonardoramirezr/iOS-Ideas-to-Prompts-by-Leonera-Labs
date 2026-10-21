@@ -84,7 +84,8 @@ final class IdeaStore {
         }
     }
 
-    /// Transcribe (si hace falta) y genera el prompt.
+    /// Transcribe (si hace falta) y genera el prompt. En las ideas de tipo "Edición", si hay
+    /// token de GitHub, la IA también elige el repositorio entre todos los de la cuenta.
     /// - Parameter retranscribe: vuelve a transcribir aunque ya exista transcripción.
     func process(_ id: UUID, retranscribe: Bool = false) async {
         guard stages[id] == nil, var idea = idea(with: id) else { return }
@@ -108,19 +109,30 @@ final class IdeaStore {
                 idea.transcript = transcript
             }
 
+            var repositories: [GitHubRepository] = []
+            if idea.isEdit, let github = settings.makeGitHubClient() {
+                stages[id] = .fetchingRepositories
+                repositories = try await github.repositories()
+            }
+
             stages[id] = .generating
             let type = settings.type(withID: idea.typeID)
                 ?? IdeaType(id: IdeaType.otherID, name: idea.typeName, symbol: idea.typeSymbol, basePrompt: "")
             let response = try await client.complete(
-                system: PromptComposer.systemMessage(transformPrompt: settings.transformPrompt, type: type),
+                system: PromptComposer.systemMessage(transformPrompt: settings.transformPrompt, type: type, repositories: repositories),
                 user: PromptComposer.userMessage(transcript: idea.transcript ?? "")
             )
-            let result = try PromptComposer.parse(response: response, type: type)
+            let result = try PromptComposer.parse(response: response, type: type, repositories: repositories)
 
             update(id) {
                 $0.title = result.title
                 $0.summary = result.summary
                 $0.prompt = result.prompt
+                // Sin la lista de repositorios (sin token) se conserva el que ya hubiera.
+                if !repositories.isEmpty {
+                    $0.repository = result.repository?.fullName
+                    $0.branch = result.repository?.defaultBranch
+                }
                 $0.status = .processed
                 $0.lastError = nil
                 $0.processedAt = Date()

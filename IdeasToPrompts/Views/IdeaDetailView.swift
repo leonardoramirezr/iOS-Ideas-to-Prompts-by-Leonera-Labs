@@ -4,11 +4,14 @@ struct IdeaDetailView: View {
     let ideaID: UUID
 
     @Environment(IdeaStore.self) private var store
+    @Environment(SettingsStore.self) private var settings
     @Environment(NetworkMonitor.self) private var network
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
     @State private var player = AudioPlayer()
     @State private var confirmingDelete = false
     @State private var copiedItem: String?
+    @State private var claudeUnavailable = false
 
     var body: some View {
         if let idea = store.idea(with: ideaID) {
@@ -24,6 +27,9 @@ struct IdeaDetailView: View {
             VStack(alignment: .leading, spacing: 20) {
                 header(idea)
                 statusCard(idea, stage: stage)
+                if idea.isEdit, let prompt = idea.prompt, !prompt.isEmpty {
+                    claudeCard(idea)
+                }
                 if let fileName = idea.audioFileName {
                     AudioPlayerCard(player: player, url: Storage.recordingURL(fileName))
                 }
@@ -52,6 +58,11 @@ struct IdeaDetailView: View {
             }
         } message: {
             Text("Se borrarán la grabación, la transcripción y el prompt.")
+        }
+        .alert("No se pudo abrir Claude", isPresented: $claudeUnavailable) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Instala la app de Claude en el iPhone e inicia sesión para abrir la idea en Claude Code.")
         }
         .onDisappear {
             player.pause()
@@ -111,6 +122,89 @@ struct IdeaDetailView: View {
                 }
             }
             .card()
+        }
+    }
+
+    /// Repositorio elegido por la IA, modo (Code o Plan), texto a enviar (prompt o transcripción)
+    /// y botón para abrir la idea en la app de Claude.
+    private func claudeCard(_ idea: Idea) -> some View {
+        let text = claudeText(idea)
+        return VStack(alignment: .leading, spacing: 14) {
+            Label("Claude Code", systemImage: "chevron.left.forwardslash.chevron.right")
+                .font(.headline)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Repositorio")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                if let repository = idea.repository {
+                    Label(repository, systemImage: "folder")
+                        .font(.callout.monospaced())
+                    Text(idea.branch.map { "Elegido por la IA · rama \($0)" } ?? "Elegido por la IA")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } else {
+                    Label("Sin repositorio", systemImage: "questionmark.folder")
+                        .font(.callout)
+                    Text(settings.gitHubToken.isEmpty
+                        ? "Añade un token de GitHub en Ajustes y regenera el prompt para que la IA elija el repositorio. También puedes elegirlo en Claude."
+                        : "La IA no identificó el repositorio. Regenera el prompt o elígelo en Claude.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Modo")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Picker("Modo", selection: Binding(get: { settings.claudeMode }, set: { settings.claudeMode = $0 })) {
+                    ForEach(ClaudeMode.allCases) { mode in
+                        Text(mode.title).tag(mode)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Texto a enviar")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Picker("Texto a enviar", selection: Binding(get: { settings.claudeContent }, set: { settings.claudeContent = $0 })) {
+                    ForEach(ClaudeContent.allCases) { content in
+                        Text(content.title).tag(content)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+
+            Button {
+                openInClaude(idea, text: text)
+            } label: {
+                Label("Abrir en Claude", systemImage: "arrow.up.forward.app")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .disabled(text.isEmpty)
+        }
+        .card()
+    }
+
+    /// Prompt o transcripción de la idea, según lo elegido en la tarjeta de Claude.
+    private func claudeText(_ idea: Idea) -> String {
+        let text = settings.claudeContent == .transcript ? idea.transcript : idea.prompt
+        return text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    }
+
+    private func openInClaude(_ idea: Idea, text: String) {
+        guard let url = ClaudeLink.url(prompt: text, repository: idea.repository, branch: idea.branch, mode: settings.claudeMode) else {
+            claudeUnavailable = true
+            return
+        }
+        openURL(url) { accepted in
+            if !accepted { claudeUnavailable = true }
         }
     }
 

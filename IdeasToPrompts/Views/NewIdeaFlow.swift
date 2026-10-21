@@ -59,7 +59,7 @@ struct IdeaTypeCard: View {
                     .font(.headline)
                     .foregroundStyle(.primary)
                     .lineLimit(1)
-                Text(type.isOther ? "Prompt desde cero" : "Con base prompt")
+                Text(type.isOther ? "Prompt desde cero" : type.isEdit ? "Abre en Claude" : "Con base prompt")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

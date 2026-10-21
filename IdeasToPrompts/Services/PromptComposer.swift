@@ -5,6 +5,8 @@ struct GeneratedPrompt: Equatable {
     var title: String
     var summary: String
     var prompt: String
+    /// Repositorio que eligió la IA, si se le pasó la lista (ideas de tipo "Edición").
+    var repository: GitHubRepository?
 }
 
 enum PromptComposerError: LocalizedError {
@@ -48,9 +50,11 @@ enum PromptComposer {
     }
 
     /// Mensaje de sistema: el prompt editable más las instrucciones de formato.
-    static func systemMessage(transformPrompt: String, type: IdeaType) -> String {
+    /// - Parameter repositories: repositorios entre los que la IA elige el de la idea (tipo "Edición").
+    static func systemMessage(transformPrompt: String, type: IdeaType, repositories: [GitHubRepository] = []) -> String {
         let fields = placeholders(in: type.basePrompt)
         var parts = [transformPrompt.trimmingCharacters(in: .whitespacesAndNewlines)]
+        let repositoryKey = repositories.isEmpty ? "" : #", "repository": "owner/repo""#
 
         if type.isOther || fields.isEmpty {
             parts.append("""
@@ -58,7 +62,7 @@ enum PromptComposer {
             Genera el prompt completo desde cero, en Markdown, estructurando únicamente lo que dice la transcripción.
 
             Formato de respuesta: responde únicamente con un objeto JSON válido, sin texto adicional ni bloques de código:
-            {"title": "…", "description": "…", "prompt": "…"}
+            {"title": "…", "description": "…", "prompt": "…"\(repositoryKey)}
             """)
         } else {
             let list = fields.map { "- \(jsonString($0))" }.joined(separator: "\n")
@@ -70,13 +74,31 @@ enum PromptComposer {
             </base_prompt>
 
             Formato de respuesta: responde únicamente con un objeto JSON válido, sin texto adicional ni bloques de código:
-            {"title": "…", "description": "…", "fields": {"<campo>": "<valor>"}}
+            {"title": "…", "description": "…", "fields": {"<campo>": "<valor>"}\(repositoryKey)}
             "fields" debe tener exactamente estas claves, escritas igual:
             \(list)
             Cada valor es texto (puede ser Markdown de varias líneas) que se insertará literalmente en el lugar de su campo, así que no repitas encabezados que ya están en el base prompt.
             """)
         }
+        if !repositories.isEmpty {
+            parts.append(repositorySection(repositories))
+        }
         return parts.joined(separator: "\n\n")
+    }
+
+    /// Lista de repositorios e instrucciones para elegir uno.
+    private static func repositorySection(_ repositories: [GitHubRepository]) -> String {
+        let list = repositories.map { repository in
+            let description = repository.description?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            return description.isEmpty ? "- \(repository.fullName)" : "- \(repository.fullName): \(description)"
+        }.joined(separator: "\n")
+        return """
+        La idea es un cambio en uno de los repositorios de GitHub de la persona. Estos son todos (owner/repo y descripción):
+        <repositorios>
+        \(list)
+        </repositorios>
+        En "repository" escribe el repositorio al que se refiere la idea, exactamente como aparece en la lista (owner/repo). Elígelo solo por lo que dice la transcripción (el nombre de la app o del proyecto, o lo que hace). Si no se puede saber cuál es, usa null.
+        """
     }
 
     static func userMessage(transcript: String) -> String {
@@ -89,7 +111,7 @@ enum PromptComposer {
     }
 
     /// Interpreta la respuesta del modelo y arma el prompt final.
-    static func parse(response: String, type: IdeaType) throws -> GeneratedPrompt {
+    static func parse(response: String, type: IdeaType, repositories: [GitHubRepository] = []) throws -> GeneratedPrompt {
         guard let object = jsonObject(in: response) else {
             throw PromptComposerError.invalidResponse("No se encontró un objeto JSON.")
         }
@@ -118,8 +140,26 @@ enum PromptComposer {
         return GeneratedPrompt(
             title: title.trimmingCharacters(in: .whitespacesAndNewlines),
             summary: summary.trimmingCharacters(in: .whitespacesAndNewlines),
-            prompt: prompt.trimmingCharacters(in: .whitespacesAndNewlines)
+            prompt: prompt.trimmingCharacters(in: .whitespacesAndNewlines),
+            repository: repository(named: string(from: object["repository"]), in: repositories)
         )
+    }
+
+    /// Repositorio que nombró la IA: `owner/repo` (también dentro de una URL) o, si no
+    /// coincide ninguno, solo `repo` cuando no hay otro con el mismo nombre.
+    static func repository(named name: String?, in repositories: [GitHubRepository]) -> GitHubRepository? {
+        let parts = (name ?? "").split(separator: "/")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        guard let last = parts.last else { return nil }
+        if parts.count >= 2 {
+            let fullName = parts[parts.count - 2] + "/" + last
+            if let match = repositories.first(where: { $0.fullName.caseInsensitiveCompare(fullName) == .orderedSame }) {
+                return match
+            }
+        }
+        let matches = repositories.filter { $0.name.caseInsensitiveCompare(last) == .orderedSame }
+        return matches.count == 1 ? matches[0] : nil
     }
 
     // MARK: - Helpers

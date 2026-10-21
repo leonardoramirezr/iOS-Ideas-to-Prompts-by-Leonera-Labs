@@ -25,6 +25,9 @@ struct Idea: Identifiable, Codable, Hashable {
     var prompt: String?
     var lastError: String?
     var processedAt: Date?
+    /// Solo en ideas de tipo "Edición": repositorio (`owner/repo`) que eligió la IA y su rama principal.
+    var repository: String?
+    var branch: String?
 
     init(number: Int, type: IdeaType, audioFileName: String?, duration: TimeInterval) {
         id = UUID()
@@ -40,6 +43,9 @@ struct Idea: Identifiable, Codable, Hashable {
 
     var isProcessed: Bool { status == .processed }
 
+    /// Idea de tipo "Edición", que se abre en la app de Claude.
+    var isEdit: Bool { typeID == IdeaType.editID }
+
     /// Título visible: el generado por la IA o "Idea #N" si aún no se procesa.
     var displayTitle: String {
         if isProcessed, let title, !title.isEmpty { return title }
@@ -47,7 +53,7 @@ struct Idea: Identifiable, Codable, Hashable {
     }
 
     func matches(_ query: String) -> Bool {
-        let fields = [displayTitle, summary, transcript, prompt, typeName, "#\(number)"]
+        let fields = [displayTitle, summary, transcript, prompt, typeName, repository, "#\(number)"]
         return fields.contains { field in
             guard let field else { return false }
             return field.localizedStandardContains(query)
@@ -58,11 +64,13 @@ struct Idea: Identifiable, Codable, Hashable {
 /// Etapa de procesamiento en curso (solo en memoria).
 enum ProcessingStage: Equatable {
     case transcribing
+    case fetchingRepositories
     case generating
 
     var label: String {
         switch self {
         case .transcribing: "Transcribiendo…"
+        case .fetchingRepositories: "Obteniendo tus repositorios…"
         case .generating: "Generando prompt…"
         }
     }

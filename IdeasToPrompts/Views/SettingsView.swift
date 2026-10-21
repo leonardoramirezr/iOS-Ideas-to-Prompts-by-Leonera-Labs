@@ -61,6 +61,30 @@ struct SettingsView: View {
 
                 Section {
                     NavigationLink {
+                        GitHubSettingsView()
+                    } label: {
+                        HStack {
+                            Label("GitHub", systemImage: "arrow.triangle.branch")
+                            Spacer()
+                            if settings.gitHubToken.isEmpty {
+                                Text("Sin configurar")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            } else {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundStyle(Color.green)
+                                    .accessibilityLabel("Configurado")
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Repositorios")
+                } footer: {
+                    Text("Con un token clásico de GitHub, la IA elige el repositorio de las ideas de tipo «Edición».")
+                }
+
+                Section {
+                    NavigationLink {
                         AppIconPickerView()
                     } label: {
                         Label("Icono de la app", systemImage: "app.badge")
@@ -86,23 +110,6 @@ struct ProviderSettingsView: View {
     @Environment(SettingsStore.self) private var settings
     @State private var apiKey = ""
     @State private var test: ConnectionTest = .idle
-
-    enum ConnectionTest: Equatable {
-        case idle
-        case running
-        case success(String)
-        case failure(String)
-
-        var successMessage: String? {
-            if case .success(let message) = self { return message }
-            return nil
-        }
-
-        var failureMessage: String? {
-            if case .failure(let message) = self { return message }
-            return nil
-        }
-    }
 
     var body: some View {
         Form {
@@ -135,25 +142,8 @@ struct ProviderSettingsView: View {
             }
 
             Section {
-                Button {
+                ConnectionTestRows(title: "Probar conexión", test: test) {
                     Task { await runTest() }
-                } label: {
-                    HStack {
-                        Text("Probar conexión")
-                        Spacer()
-                        if test == .running { ProgressView() }
-                    }
-                }
-                .disabled(test == .running)
-                if let message = test.successMessage {
-                    Label(message, systemImage: "checkmark.circle.fill")
-                        .font(.footnote)
-                        .foregroundStyle(Color.green)
-                }
-                if let message = test.failureMessage {
-                    Label(message, systemImage: "xmark.octagon.fill")
-                        .font(.footnote)
-                        .foregroundStyle(Color.red)
                 }
                 Button("Usar \(provider.displayName)") {
                     settings.selectedProvider = provider
@@ -214,6 +204,114 @@ struct ProviderSettingsView: View {
                 user: "Prueba de conexión."
             )
             test = .success("Conexión correcta con \(config.chatModel).")
+        } catch {
+            test = .failure(error.localizedDescription)
+        }
+    }
+}
+
+/// Resultado de "Probar conexión" / "Probar token".
+enum ConnectionTest: Equatable {
+    case idle
+    case running
+    case success(String)
+    case failure(String)
+
+    var successMessage: String? {
+        if case .success(let message) = self { return message }
+        return nil
+    }
+
+    var failureMessage: String? {
+        if case .failure(let message) = self { return message }
+        return nil
+    }
+}
+
+/// Botón de prueba con su indicador de progreso y el resultado debajo.
+private struct ConnectionTestRows: View {
+    let title: String
+    let test: ConnectionTest
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Text(title)
+                Spacer()
+                if test == .running { ProgressView() }
+            }
+        }
+        .disabled(test == .running)
+        if let message = test.successMessage {
+            Label(message, systemImage: "checkmark.circle.fill")
+                .font(.footnote)
+                .foregroundStyle(Color.green)
+        }
+        if let message = test.failureMessage {
+            Label(message, systemImage: "xmark.octagon.fill")
+                .font(.footnote)
+                .foregroundStyle(Color.red)
+        }
+    }
+}
+
+struct GitHubSettingsView: View {
+    @Environment(SettingsStore.self) private var settings
+    @State private var token = ""
+    @State private var test: ConnectionTest = .idle
+
+    /// Crea un token clásico con el permiso `repo`, necesario para incluir los repositorios privados.
+    private static let newTokenURL = URL(string: "https://github.com/settings/tokens/new?scopes=repo&description=Ideas%20to%20Prompts")!
+
+    var body: some View {
+        Form {
+            Section {
+                SecureField("Token clásico (ghp_…)", text: $token)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                Link(destination: Self.newTokenURL) {
+                    Label("Crear token clásico", systemImage: "arrow.up.right.square")
+                }
+            } header: {
+                Text("Token")
+            } footer: {
+                Text("Usa un token clásico (classic) con el permiso repo para que también se incluyan tus repositorios privados. Se guarda en el llavero del iPhone.")
+            }
+
+            Section {
+                ConnectionTestRows(title: "Probar token", test: test) {
+                    Task { await runTest() }
+                }
+            } footer: {
+                Text("Al procesar una idea de tipo «Edición», la app obtiene todos tus repositorios y envía su nombre y descripción al proveedor de inferencia para que elija a cuál se refiere la idea.")
+            }
+        }
+        .navigationTitle("GitHub")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            token = settings.gitHubToken
+        }
+        .onChange(of: token) { _, value in
+            settings.setGitHubToken(value)
+            test = .idle
+        }
+    }
+
+    private func runTest() async {
+        guard let client = settings.makeGitHubClient() else {
+            test = .failure("Falta el token de GitHub.")
+            return
+        }
+        test = .running
+        do {
+            let account = try await client.account()
+            let repositories = try await client.repositories()
+            var message = "Conectado como @\(account.login): " + (repositories.count == 1 ? "1 repositorio." : "\(repositories.count) repositorios.")
+            if let scopes = account.scopes, !scopes.contains("repo") {
+                message += " El token no tiene el permiso repo: solo se incluyen tus repositorios públicos."
+            }
+            test = .success(message)
         } catch {
             test = .failure(error.localizedDescription)
         }

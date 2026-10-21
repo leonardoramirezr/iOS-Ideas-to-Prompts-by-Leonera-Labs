@@ -1,7 +1,7 @@
 import Foundation
 import Observation
 
-/// Configuración de la app: proveedor, prompt de transformación y tipos de idea.
+/// Configuración de la app: proveedor, prompt de transformación, tipos de idea y GitHub.
 @Observable
 @MainActor
 final class SettingsStore {
@@ -10,17 +10,31 @@ final class SettingsStore {
         var configs: [String: ProviderConfig]
         var transformPrompt: String
         var ideaTypes: [IdeaType]
+        var addedDefaultTypeIDs: [String]?
+        var claudeMode: ClaudeMode?
+        var claudeContent: ClaudeContent?
     }
 
     private static let fileName = "settings.json"
+    private static let gitHubTokenAccount = "github.token"
 
     var selectedProvider: InferenceProvider { didSet { save() } }
     var configs: [String: ProviderConfig] { didSet { save() } }
     var transformPrompt: String { didSet { save() } }
     var ideaTypes: [IdeaType] { didSet { save() } }
+    /// Último modo elegido para abrir las ideas de tipo "Edición" en Claude.
+    var claudeMode: ClaudeMode { didSet { save() } }
+    /// Último texto elegido (prompt o transcripción) para enviar a Claude.
+    var claudeContent: ClaudeContent { didSet { save() } }
+
+    /// Tipos predeterminados que ya se añadieron alguna vez. Así, un tipo predeterminado
+    /// nuevo aparece al actualizar la app, pero uno que se borró no vuelve solo.
+    private var addedDefaultTypeIDs: [String]
 
     /// Copia en memoria de las API keys (la fuente de verdad es el llavero).
     private var apiKeys: [String: String] = [:]
+    /// Token clásico de GitHub (también en el llavero).
+    private(set) var gitHubToken: String
 
     init() {
         let snapshot = Storage.load(Snapshot.self, from: Self.fileName)
@@ -28,8 +42,19 @@ final class SettingsStore {
         configs = snapshot?.configs ?? [:]
         transformPrompt = snapshot?.transformPrompt ?? DefaultPrompts.transform
         ideaTypes = snapshot?.ideaTypes ?? IdeaType.defaults
+        claudeMode = snapshot?.claudeMode ?? .code
+        claudeContent = snapshot?.claudeContent ?? .prompt
+        addedDefaultTypeIDs = snapshot.map { $0.addedDefaultTypeIDs ?? IdeaType.legacyDefaultIDs } ?? IdeaType.defaults.map(\.id)
+        gitHubToken = Keychain.string(for: Self.gitHubTokenAccount) ?? ""
         for provider in InferenceProvider.allCases {
             apiKeys[provider.rawValue] = Keychain.string(for: Self.keychainAccount(provider)) ?? ""
+        }
+
+        let newDefaults = IdeaType.defaults.filter { !addedDefaultTypeIDs.contains($0.id) }
+        if !newDefaults.isEmpty {
+            ideaTypes += newDefaults.filter { type in !ideaTypes.contains { $0.id == type.id } }
+            addedDefaultTypeIDs += newDefaults.map(\.id)
+            save()
         }
     }
 
@@ -85,6 +110,20 @@ final class SettingsStore {
         return InferenceClient(provider: selectedProvider, config: config(for: selectedProvider), apiKey: apiKey(for: selectedProvider))
     }
 
+    // MARK: - GitHub
+
+    func setGitHubToken(_ token: String) {
+        let trimmed = token.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard gitHubToken != trimmed else { return }
+        gitHubToken = trimmed
+        Keychain.set(trimmed, for: Self.gitHubTokenAccount)
+    }
+
+    /// Cliente de GitHub, o `nil` si no hay token.
+    func makeGitHubClient() -> GitHubClient? {
+        gitHubToken.isEmpty ? nil : GitHubClient(token: gitHubToken)
+    }
+
     // MARK: - Tipos de idea
 
     /// Tipos para elegir al grabar: los editables y, al final, "Otro".
@@ -112,7 +151,10 @@ final class SettingsStore {
 
     private func save() {
         Storage.save(
-            Snapshot(selectedProvider: selectedProvider, configs: configs, transformPrompt: transformPrompt, ideaTypes: ideaTypes),
+            Snapshot(
+                selectedProvider: selectedProvider, configs: configs, transformPrompt: transformPrompt, ideaTypes: ideaTypes,
+                addedDefaultTypeIDs: addedDefaultTypeIDs, claudeMode: claudeMode, claudeContent: claudeContent
+            ),
             to: Self.fileName
         )
     }
