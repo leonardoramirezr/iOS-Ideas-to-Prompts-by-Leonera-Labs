@@ -84,7 +84,7 @@ final class IdeaStore {
         }
     }
 
-    /// Transcribe (si hace falta) y genera el prompt. En las ideas de tipo "Edición", si hay
+    /// Transcribe (si hace falta) y genera el prompt. En las ideas de tipo "Edición" o "Resolver bug", si hay
     /// token de GitHub, la IA también elige el repositorio entre todos los de la cuenta.
     /// - Parameter retranscribe: vuelve a transcribir aunque ya exista transcripción.
     func process(_ id: UUID, retranscribe: Bool = false) async {
@@ -110,7 +110,7 @@ final class IdeaStore {
             }
 
             var repositories: [GitHubRepository] = []
-            if idea.isEdit, let github = settings.makeGitHubClient() {
+            if idea.opensInClaude, let github = settings.makeGitHubClient() {
                 stages[id] = .fetchingRepositories
                 repositories = try await github.repositories()
             }

@@ -5,7 +5,7 @@ struct GeneratedPrompt: Equatable {
     var title: String
     var summary: String
     var prompt: String
-    /// Repositorio que eligió la IA, si se le pasó la lista (ideas de tipo "Edición").
+    /// Repositorio que eligió la IA, si se le pasó la lista (ideas de tipo "Edición" o "Resolver bug").
     var repository: GitHubRepository?
 }
 
@@ -50,7 +50,7 @@ enum PromptComposer {
     }
 
     /// Mensaje de sistema: el prompt editable más las instrucciones de formato.
-    /// - Parameter repositories: repositorios entre los que la IA elige el de la idea (tipo "Edición").
+    /// - Parameter repositories: repositorios entre los que la IA elige el de la idea (tipos "Edición" y "Resolver bug").
     static func systemMessage(transformPrompt: String, type: IdeaType, repositories: [GitHubRepository] = []) -> String {
         let fields = placeholders(in: type.basePrompt)
         var parts = [transformPrompt.trimmingCharacters(in: .whitespacesAndNewlines)]

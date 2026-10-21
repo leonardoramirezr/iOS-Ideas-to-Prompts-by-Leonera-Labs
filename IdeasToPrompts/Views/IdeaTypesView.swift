@@ -26,7 +26,7 @@ struct IdeaTypesView: View {
                 }
                 IdeaTypeRow(type: .other)
             } footer: {
-                Text("Cada tipo tiene un base prompt y la IA solo completa las partes entre [[[ ]]]. «Edición» además elige el repositorio de GitHub y se abre en la app de Claude. «Otro» genera el prompt desde cero.")
+                Text("Cada tipo tiene un base prompt y la IA solo completa las partes entre [[[ ]]]. «Edición» y «Resolver bug» además eligen el repositorio de GitHub y se abren en la app de Claude. «Otro» genera el prompt desde cero.")
             }
 
             Section {
@@ -75,7 +75,7 @@ private struct IdeaTypeRow: View {
         if type.isOther { return "Prompt desde cero · no editable" }
         let count = PromptComposer.placeholders(in: type.basePrompt).count
         let fields = count == 1 ? "1 campo para la IA" : "\(count) campos para la IA"
-        return type.isEdit ? fields + " · elige el repositorio" : fields
+        return type.opensInClaude ? fields + " · elige el repositorio" : fields
     }
 }
 
@@ -141,12 +141,12 @@ struct IdeaTypeEditorView: View {
                 Text("Campos que completará la IA")
             }
 
-            if type.isEdit {
+            if type.opensInClaude {
                 Section {
                     Label("La IA también elige el repositorio entre los de tu cuenta de GitHub, y la idea procesada se abre en la app de Claude con ese repositorio y el prompt.", systemImage: "arrow.up.forward.app")
                         .font(.callout)
                 } header: {
-                    Text("Edición")
+                    Text("Claude")
                 } footer: {
                     Text("Para que la IA vea tus repositorios, añade un token clásico de GitHub en Ajustes › GitHub.")
                 }
