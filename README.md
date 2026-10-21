@@ -5,7 +5,7 @@ App de iOS (SwiftUI, sin dependencias externas) para guardar ideas por voz cuand
 ## Cómo funciona
 
 1. Abres la app y ves tus **Ideas**, con una barra inferior flotante (opaca, al estilo de iOS 26) con *Ideas*, *Buscar*, *Ajustes* y el botón **+**.
-2. Con **+** eliges el tipo de idea (*iOS App*, *Web App*, *Desktop App*, los tipos que añadas u *Otro*) y la grabas. No hace falta que esté pulida ni bien narrada.
+2. Con **+** eliges el tipo de idea (*iOS App*, *Web App*, *Desktop App*, *Edición*, los tipos que añadas u *Otro*) y la grabas. No hace falta que esté pulida ni bien narrada.
 3. Al terminar de grabar:
    - **Con internet**, la app transcribe la grabación y genera el prompt, un título y una descripción breve.
    - **Sin internet**, la idea se marca con el símbolo ☁︎ tachado (`icloud.slash`) y se procesa sola cuando vuelve la conexión.
@@ -18,6 +18,20 @@ App de iOS (SwiftUI, sin dependencias externas) para guardar ideas por voz cuand
 - Con el tipo **Otro**, el prompt se genera desde cero.
 - El **prompt de transcripción a prompt** es editable en *Ajustes*. Por defecto pide estructurar la narración sin proponer nada ni definir edge cases que la grabación no menciona.
 - Los tipos de idea (nombre, icono y base prompt) se añaden, editan, reordenan y borran en *Ajustes › Tipos de idea*.
+
+### Ideas de tipo *Edición* (Claude)
+
+Para cambios en un repositorio que ya existe:
+
+1. En *Ajustes › GitHub* añades un **token clásico** de GitHub (con el permiso `repo` para incluir los privados; se guarda en el llavero). *Probar token* muestra la cuenta y cuántos repositorios ve.
+2. Al procesar una idea de tipo *Edición*, la app obtiene todos tus repositorios (`GET /user/repos`) y envía su nombre y descripción a la IA junto con la transcripción; la IA rellena el base prompt y elige el repositorio.
+3. En el detalle de la idea se muestra el repositorio que eligió la IA (y su rama principal), puedes elegir el modo **Code** o **Plan** y el botón **Abrir en Claude** abre la app de Claude con todo preseleccionado:
+
+   ```
+   claude://code/new?repo=<owner/repo>&branch=<rama>&mode=<code|plan>&q=<prompt codificado>
+   ```
+
+   Sin token (o si la IA no identifica el repositorio) se omiten `repo` y `branch`, y el repositorio se elige en Claude.
 
 ### Proveedores de inferencia
 

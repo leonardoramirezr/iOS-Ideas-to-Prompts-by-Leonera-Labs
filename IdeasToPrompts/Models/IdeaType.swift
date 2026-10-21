@@ -11,6 +11,9 @@ struct IdeaType: Identifiable, Codable, Hashable {
     /// "Otro": el prompt final se genera desde cero, sin base prompt.
     var isOther: Bool { id == IdeaType.otherID }
 
+    /// "Edición": la IA también elige el repositorio y la idea se abre en la app de Claude.
+    var isEdit: Bool { id == IdeaType.editID }
+
     /// Base prompt original para los tipos predeterminados.
     var defaultBasePrompt: String? {
         IdeaType.defaults.first { $0.id == id }?.basePrompt
@@ -19,14 +22,19 @@ struct IdeaType: Identifiable, Codable, Hashable {
 
 extension IdeaType {
     static let otherID = "other"
+    static let editID = "edit"
 
     static let iOSApp = IdeaType(id: "ios-app", name: "iOS App", symbol: "iphone", basePrompt: DefaultPrompts.iOSAppBase)
     static let webApp = IdeaType(id: "web-app", name: "Web App", symbol: "globe", basePrompt: DefaultPrompts.webAppBase)
     static let desktopApp = IdeaType(id: "desktop-app", name: "Desktop App", symbol: "desktopcomputer", basePrompt: DefaultPrompts.desktopAppBase)
+    static let edit = IdeaType(id: editID, name: "Edición", symbol: "pencil", basePrompt: DefaultPrompts.editBase)
     static let other = IdeaType(id: otherID, name: "Otro", symbol: "sparkles", basePrompt: "")
 
     /// Tipos editables con los que arranca la app. "Otro" siempre existe aparte.
-    static let defaults: [IdeaType] = [.iOSApp, .webApp, .desktopApp]
+    static let defaults: [IdeaType] = [.iOSApp, .webApp, .desktopApp, .edit]
+
+    /// Tipos predeterminados que existían antes de que se guardara cuáles ya se habían añadido.
+    static let legacyDefaultIDs = ["ios-app", "web-app", "desktop-app"]
 
     /// Símbolos disponibles al crear o editar un tipo.
     static let symbolChoices = [
@@ -34,5 +42,6 @@ extension IdeaType {
         "terminal", "server.rack", "puzzlepiece.extension", "cpu", "chart.bar", "cart",
         "book", "music.note", "camera", "paintbrush", "wrench.and.screwdriver", "brain",
         "lightbulb", "doc.text", "envelope", "map", "heart", "sparkles",
+        "pencil", "hammer", "ladybug", "arrow.triangle.branch", "folder", "chevron.left.forwardslash.chevron.right",
     ]
 }

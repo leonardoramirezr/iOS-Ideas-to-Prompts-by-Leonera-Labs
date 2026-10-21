@@ -85,6 +85,13 @@ enum DefaultPrompts {
     [[[Caracteristicas/Funciones/Requerimientos]]]
     """
 
+    /// Base prompt del tipo de idea "Edición": un cambio en un repositorio existente,
+    /// que se abre en la app de Claude con el repositorio que elige la IA.
+    static let editBase = """
+    # Cambios solicitados
+    [[[Cambios/Funciones/Correcciones solicitadas]]]
+    """
+
     /// Base prompt sugerido al crear un tipo de idea nuevo.
     static let newTypeBase = """
     # Requerimientos base.
