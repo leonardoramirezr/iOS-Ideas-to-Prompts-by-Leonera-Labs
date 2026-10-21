@@ -28,7 +28,7 @@ struct IdeaDetailView: View {
                 header(idea)
                 statusCard(idea, stage: stage)
                 if idea.isEdit, let prompt = idea.prompt, !prompt.isEmpty {
-                    claudeCard(idea, prompt: prompt)
+                    claudeCard(idea)
                 }
                 if let fileName = idea.audioFileName {
                     AudioPlayerCard(player: player, url: Storage.recordingURL(fileName))
@@ -125,9 +125,11 @@ struct IdeaDetailView: View {
         }
     }
 
-    /// Repositorio elegido por la IA, modo (Code o Plan) y botón para abrir la idea en la app de Claude.
-    private func claudeCard(_ idea: Idea, prompt: String) -> some View {
-        VStack(alignment: .leading, spacing: 14) {
+    /// Repositorio elegido por la IA, modo (Code o Plan), texto a enviar (prompt o transcripción)
+    /// y botón para abrir la idea en la app de Claude.
+    private func claudeCard(_ idea: Idea) -> some View {
+        let text = claudeText(idea)
+        return VStack(alignment: .leading, spacing: 14) {
             Label("Claude Code", systemImage: "chevron.left.forwardslash.chevron.right")
                 .font(.headline)
 
@@ -164,8 +166,20 @@ struct IdeaDetailView: View {
                 .pickerStyle(.segmented)
             }
 
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Texto a enviar")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Picker("Texto a enviar", selection: Binding(get: { settings.claudeContent }, set: { settings.claudeContent = $0 })) {
+                    ForEach(ClaudeContent.allCases) { content in
+                        Text(content.title).tag(content)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+
             Button {
-                openInClaude(idea, prompt: prompt)
+                openInClaude(idea, text: text)
             } label: {
                 Label("Abrir en Claude", systemImage: "arrow.up.forward.app")
                     .font(.headline)
@@ -173,12 +187,19 @@ struct IdeaDetailView: View {
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+            .disabled(text.isEmpty)
         }
         .card()
     }
 
-    private func openInClaude(_ idea: Idea, prompt: String) {
-        guard let url = ClaudeLink.url(prompt: prompt, repository: idea.repository, branch: idea.branch, mode: settings.claudeMode) else {
+    /// Prompt o transcripción de la idea, según lo elegido en la tarjeta de Claude.
+    private func claudeText(_ idea: Idea) -> String {
+        let text = settings.claudeContent == .transcript ? idea.transcript : idea.prompt
+        return text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    }
+
+    private func openInClaude(_ idea: Idea, text: String) {
+        guard let url = ClaudeLink.url(prompt: text, repository: idea.repository, branch: idea.branch, mode: settings.claudeMode) else {
             claudeUnavailable = true
             return
         }

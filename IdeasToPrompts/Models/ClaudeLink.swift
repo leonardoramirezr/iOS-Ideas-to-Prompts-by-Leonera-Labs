@@ -15,6 +15,21 @@ enum ClaudeMode: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Texto de la idea que se envía a Claude como prompt.
+enum ClaudeContent: String, CaseIterable, Codable, Identifiable {
+    case prompt
+    case transcript
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .prompt: "Prompt"
+        case .transcript: "Transcripción"
+        }
+    }
+}
+
 /// Enlace que abre Claude Code en la app de Claude con el repositorio, la rama,
 /// el modo y el prompt preseleccionados:
 /// `claude://code/new?repo=owner/repo&branch=main&mode=code&q=<prompt codificado>`.

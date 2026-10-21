@@ -25,10 +25,10 @@ Para cambios en un repositorio que ya existe:
 
 1. En *Ajustes › GitHub* añades un **token clásico** de GitHub (con el permiso `repo` para incluir los privados; se guarda en el llavero). *Probar token* muestra la cuenta y cuántos repositorios ve.
 2. Al procesar una idea de tipo *Edición*, la app obtiene todos tus repositorios (`GET /user/repos`) y envía su nombre y descripción a la IA junto con la transcripción; la IA rellena el base prompt y elige el repositorio.
-3. En el detalle de la idea se muestra el repositorio que eligió la IA (y su rama principal), puedes elegir el modo **Code** o **Plan** y el botón **Abrir en Claude** abre la app de Claude con todo preseleccionado:
+3. En el detalle de la idea se muestra el repositorio que eligió la IA (y su rama principal), puedes elegir el modo **Code** o **Plan** y si se envía el **Prompt** o la **Transcripción**, y el botón **Abrir en Claude** abre la app de Claude con todo preseleccionado:
 
    ```
-   claude://code/new?repo=<owner/repo>&branch=<rama>&mode=<code|plan>&q=<prompt codificado>
+   claude://code/new?repo=<owner/repo>&branch=<rama>&mode=<code|plan>&q=<prompt o transcripción codificado>
    ```
 
    Sin token (o si la IA no identifica el repositorio) se omiten `repo` y `branch`, y el repositorio se elige en Claude.

@@ -12,6 +12,7 @@ final class SettingsStore {
         var ideaTypes: [IdeaType]
         var addedDefaultTypeIDs: [String]?
         var claudeMode: ClaudeMode?
+        var claudeContent: ClaudeContent?
     }
 
     private static let fileName = "settings.json"
@@ -23,6 +24,8 @@ final class SettingsStore {
     var ideaTypes: [IdeaType] { didSet { save() } }
     /// Último modo elegido para abrir las ideas de tipo "Edición" en Claude.
     var claudeMode: ClaudeMode { didSet { save() } }
+    /// Último texto elegido (prompt o transcripción) para enviar a Claude.
+    var claudeContent: ClaudeContent { didSet { save() } }
 
     /// Tipos predeterminados que ya se añadieron alguna vez. Así, un tipo predeterminado
     /// nuevo aparece al actualizar la app, pero uno que se borró no vuelve solo.
@@ -40,6 +43,7 @@ final class SettingsStore {
         transformPrompt = snapshot?.transformPrompt ?? DefaultPrompts.transform
         ideaTypes = snapshot?.ideaTypes ?? IdeaType.defaults
         claudeMode = snapshot?.claudeMode ?? .code
+        claudeContent = snapshot?.claudeContent ?? .prompt
         addedDefaultTypeIDs = snapshot.map { $0.addedDefaultTypeIDs ?? IdeaType.legacyDefaultIDs } ?? IdeaType.defaults.map(\.id)
         gitHubToken = Keychain.string(for: Self.gitHubTokenAccount) ?? ""
         for provider in InferenceProvider.allCases {
@@ -149,7 +153,7 @@ final class SettingsStore {
         Storage.save(
             Snapshot(
                 selectedProvider: selectedProvider, configs: configs, transformPrompt: transformPrompt, ideaTypes: ideaTypes,
-                addedDefaultTypeIDs: addedDefaultTypeIDs, claudeMode: claudeMode
+                addedDefaultTypeIDs: addedDefaultTypeIDs, claudeMode: claudeMode, claudeContent: claudeContent
             ),
             to: Self.fileName
         )
