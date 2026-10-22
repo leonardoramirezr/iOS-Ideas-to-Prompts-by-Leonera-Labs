@@ -1,0 +1,18 @@
+{
+  "tag": "build-15-e1f0930",
+  "channel": "branch",
+  "version": "0.5.0",
+  "build": "15",
+  "branch": "claude/iconos-8-opciones",
+  "sha": "e1f0930fb866b22253bac89340261b38bddc1b37",
+  "date": "2026-10-22T15:39:11Z",
+  "bundle_id": "com.leonardoramirezr.Ideastopromptsbyleoneralabs",
+  "title": "Ideas to Prompts by Leonera Labs",
+  "ipa": "IdeasToPrompts.ipa",
+  "devices": 1,
+  "page_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-15-e1f0930/",
+  "manifest_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-15-e1f0930/manifest.plist",
+  "install_url": "itms-services://?action=download-manifest&url=https%3A%2F%2Fleonardoramirezr.github.io%2FiOS-Ideas-to-Prompts-by-Leonera-Labs%2Fbuild-15-e1f0930%2Fmanifest.plist",
+  "run_url": "https://github.com/leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs/actions/runs/39805034216",
+  "repo": "leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs"
+}

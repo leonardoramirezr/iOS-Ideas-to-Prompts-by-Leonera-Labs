@@ -1,0 +1,18 @@
+{
+  "tag": "0.1.0",
+  "channel": "stable",
+  "version": "0.1.0",
+  "build": "4",
+  "branch": "main",
+  "sha": "e6cd5f7c18e8440303c6569e0e158ccc304f0508",
+  "date": "2026-10-18T20:13:50Z",
+  "bundle_id": "com.leonardoramirezr.Ideastopromptsbyleoneralabs",
+  "title": "Ideas to Prompts by Leonera Labs",
+  "ipa": "IdeasToPrompts.ipa",
+  "devices": 1,
+  "page_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/0.1.0/",
+  "manifest_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/0.1.0/manifest.plist",
+  "install_url": "itms-services://?action=download-manifest&url=https%3A%2F%2Fleonardoramirezr.github.io%2FiOS-Ideas-to-Prompts-by-Leonera-Labs%2F0.1.0%2Fmanifest.plist",
+  "run_url": "https://github.com/leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs/actions/runs/39162230697",
+  "repo": "leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs"
+}

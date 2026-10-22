@@ -1,0 +1,18 @@
+{
+  "tag": "build-12-fbdbbd1",
+  "channel": "branch",
+  "version": "0.4.0",
+  "build": "12",
+  "branch": "claude/simbolos-prompt",
+  "sha": "fbdbbd11a0f20d66464845e6473f0ab16ef4e83b",
+  "date": "2026-10-22T15:01:47Z",
+  "bundle_id": "com.leonardoramirezr.Ideastopromptsbyleoneralabs",
+  "title": "Ideas to Prompts by Leonera Labs",
+  "ipa": "IdeasToPrompts.ipa",
+  "devices": 1,
+  "page_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-12-fbdbbd1/",
+  "manifest_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-12-fbdbbd1/manifest.plist",
+  "install_url": "itms-services://?action=download-manifest&url=https%3A%2F%2Fleonardoramirezr.github.io%2FiOS-Ideas-to-Prompts-by-Leonera-Labs%2Fbuild-12-fbdbbd1%2Fmanifest.plist",
+  "run_url": "https://github.com/leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs/actions/runs/39800694747",
+  "repo": "leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs"
+}

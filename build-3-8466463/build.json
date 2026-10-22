@@ -1,0 +1,18 @@
+{
+  "tag": "build-3-8466463",
+  "channel": "branch",
+  "version": "0.1.0",
+  "build": "3",
+  "branch": "claude/pensive-hopper-196ivt",
+  "sha": "846646319bcb875624f1de3206dcc0756071af6a",
+  "date": "2026-10-18T05:59:34Z",
+  "bundle_id": "com.leonardoramirezr.Ideastopromptsbyleoneralabs",
+  "title": "Ideas to Prompts by Leonera Labs",
+  "ipa": "IdeasToPrompts.ipa",
+  "devices": 1,
+  "page_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-3-8466463/",
+  "manifest_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-3-8466463/manifest.plist",
+  "install_url": "itms-services://?action=download-manifest&url=https%3A%2F%2Fleonardoramirezr.github.io%2FiOS-Ideas-to-Prompts-by-Leonera-Labs%2Fbuild-3-8466463%2Fmanifest.plist",
+  "run_url": "https://github.com/leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs/actions/runs/39102373933",
+  "repo": "leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs"
+}

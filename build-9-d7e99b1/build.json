@@ -1,0 +1,18 @@
+{
+  "tag": "build-9-d7e99b1",
+  "channel": "branch",
+  "version": "0.3.0",
+  "build": "9",
+  "branch": "claude/resolver-bug-type",
+  "sha": "d7e99b1db9847690270be84d2bd58fbd42193373",
+  "date": "2026-10-21T23:45:40Z",
+  "bundle_id": "com.leonardoramirezr.Ideastopromptsbyleoneralabs",
+  "title": "Ideas to Prompts by Leonera Labs",
+  "ipa": "IdeasToPrompts.ipa",
+  "devices": 1,
+  "page_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-9-d7e99b1/",
+  "manifest_url": "https://leonardoramirezr.github.io/iOS-Ideas-to-Prompts-by-Leonera-Labs/build-9-d7e99b1/manifest.plist",
+  "install_url": "itms-services://?action=download-manifest&url=https%3A%2F%2Fleonardoramirezr.github.io%2FiOS-Ideas-to-Prompts-by-Leonera-Labs%2Fbuild-9-d7e99b1%2Fmanifest.plist",
+  "run_url": "https://github.com/leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs/actions/runs/39695243548",
+  "repo": "leonardoramirezr/iOS-Ideas-to-Prompts-by-Leonera-Labs"
+}
