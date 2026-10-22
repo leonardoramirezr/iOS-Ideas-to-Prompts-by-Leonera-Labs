@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-/// Las cuatro propuestas de logo, disponibles como icono alternativo de la app.
+/// Las propuestas de logo, disponibles como icono alternativo de la app.
 struct AppIconOption: Identifiable {
     /// Nombre de la imagen de vista previa en el catálogo.
     let id: String
@@ -14,6 +14,14 @@ struct AppIconOption: Identifiable {
         AppIconOption(id: "LogoOnda", iconName: "AppIconOnda", title: "Onda"),
         AppIconOption(id: "LogoBurbuja", iconName: "AppIconBurbuja", title: "Burbuja"),
         AppIconOption(id: "LogoMicrofono", iconName: "AppIconMicrofono", title: "Micrófono"),
+        AppIconOption(id: "LogoCristal", iconName: "AppIconCristal", title: "Cristal"),
+        AppIconOption(id: "LogoMensaje", iconName: "AppIconMensaje", title: "Mensaje"),
+        AppIconOption(id: "LogoEstudio", iconName: "AppIconEstudio", title: "Estudio"),
+        AppIconOption(id: "LogoTerminal", iconName: "AppIconTerminal", title: "Terminal"),
+        AppIconOption(id: "LogoOrbe", iconName: "AppIconOrbe", title: "Orbe"),
+        AppIconOption(id: "LogoLibreta", iconName: "AppIconLibreta", title: "Libreta"),
+        AppIconOption(id: "LogoCubo", iconName: "AppIconCubo", title: "Cubo"),
+        AppIconOption(id: "LogoDestello", iconName: "AppIconDestello", title: "Destello"),
     ]
 }
 

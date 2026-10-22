@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBFBFF"/><stop offset="1" stop-color="#DCE0F2"/></linearGradient>
+    <linearGradient id="topG" gradientUnits="userSpaceOnUse" x1="512" y1="210" x2="512" y2="500"><stop offset="0" stop-color="#FFE38A"/><stop offset="1" stop-color="#FFA526"/></linearGradient>
+    <linearGradient id="leftG" gradientUnits="userSpaceOnUse" x1="261" y1="355" x2="512" y2="790"><stop offset="0" stop-color="#FF7AA8"/><stop offset="1" stop-color="#E23D82"/></linearGradient>
+    <linearGradient id="rightG" gradientUnits="userSpaceOnUse" x1="512" y1="500" x2="763" y2="645"><stop offset="0" stop-color="#6C63FF"/><stop offset="1" stop-color="#3A2FC4"/></linearGradient>
+    <radialGradient id="topSpec" gradientUnits="userSpaceOnUse" cx="512" cy="250" r="260"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <filter id="glyphSh" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2A0A4A" flood-opacity="0.25"/></filter>
+    <filter id="b30" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feGaussianBlur stdDeviation="30"/></filter>
+    <filter id="b6" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="cubeSh" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#2A2470" flood-opacity="0.18"/></filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <ellipse cx="512" cy="836" rx="250" ry="46" fill="#3A2F8A" opacity="0.30" filter="url(#b30)"/>
+  <g filter="url(#cubeSh)" stroke-linejoin="round" stroke-width="22">
+    <path d="M 261 355 L 512 500 L 512 790 L 261 645 Z" fill="url(#leftG)" stroke="url(#leftG)"/>
+    <path d="M 512 500 L 763 355 L 763 645 L 512 790 Z" fill="url(#rightG)" stroke="url(#rightG)"/>
+    <path d="M 261 355 L 512 210 L 763 355 L 512 500 Z" fill="url(#topG)" stroke="url(#topG)"/>
+  </g>
+  <path d="M 261 355 L 512 210 L 763 355 L 512 500 Z" fill="url(#topSpec)"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M 261 355 L 512 500 L 763 355" stroke="#FFFFFF" stroke-width="7" opacity="0.85"/>
+    <path d="M 512 500 L 512 790" stroke="#FFFFFF" stroke-width="5" opacity="0.4"/>
+  </g>
+  <g filter="url(#glyphSh)">
+    <g transform="matrix(2.511 -1.45 2.511 1.45 261 355) rotate(45 50 50)" fill="#FFFFFF">
+      <circle cx="50" cy="42" r="21"/>
+      <path d="M 40 58 L 60 58 L 58 70 L 42 70 Z"/>
+      <rect x="41" y="72" width="18" height="5" rx="2.5"/>
+      <rect x="43.5" y="79" width="13" height="4.5" rx="2.25"/>
+    </g>
+    <g transform="matrix(2.51 1.45 0 2.9 261 355)"><rect x="19.2" y="43.0" width="5.6" height="14" rx="2.8" fill="#FFFFFF"/><rect x="28.5" y="35.0" width="5.6" height="30" rx="2.8" fill="#FFFFFF"/><rect x="37.8" y="26.0" width="5.6" height="48" rx="2.8" fill="#FFFFFF"/><rect x="47.1" y="19.0" width="5.6" height="62" rx="2.8" fill="#FFFFFF"/><rect x="56.4" y="28.0" width="5.6" height="44" rx="2.8" fill="#FFFFFF"/><rect x="65.7" y="36.0" width="5.6" height="28" rx="2.8" fill="#FFFFFF"/><rect x="75.0" y="42.0" width="5.6" height="16" rx="2.8" fill="#FFFFFF"/></g>
+    <g transform="matrix(2.51 -1.45 0 2.9 512 500)" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="30,30 46,50 30,70"/><line x1="56" y1="70" x2="76" y2="70"/>
+    </g>
+  </g>
+  <g fill="#FFC23D">
+    <path d="M 196 160 Q 204.64 205.36 250 214 Q 204.64 222.64 196 268 Q 187.36 222.64 142 214 Q 187.36 205.36 196 160 Z"/>
+    <path d="M 838 134 Q 843.44 162.56 872 168 Q 843.44 173.44 838 202 Q 832.56 173.44 804 168 Q 832.56 162.56 838 134 Z" fill="#8B7CFF"/>
+    <path d="M 860 496 Q 863.84 516.16 884 520 Q 863.84 523.84 860 544 Q 856.16 523.84 836 520 Q 856.16 516.16 860 496 Z" fill="#FF6FA3"/>
+  </g>
+</svg>
