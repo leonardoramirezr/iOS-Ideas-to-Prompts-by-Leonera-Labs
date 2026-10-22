@@ -26,12 +26,8 @@
     <rect width="1024" height="1024" fill="url(#edgeDark)" transform="translate(212 212) scale(0.5859)"/>
   </g>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke="#FFFFFF" stroke-width="40" opacity="0.55" filter="url(#b10)">
-      <polyline points="606,462 664,512 606,562"/><line x1="690" y1="566" x2="738" y2="566"/>
-    </g>
-    <g stroke="#FFFFFF" stroke-width="30">
-      <polyline points="606,462 664,512 606,562"/><line x1="690" y1="566" x2="738" y2="566"/>
-    </g>
+    <g opacity="0.55" filter="url(#b10)"><g transform="translate(666 516) scale(0.5763) translate(-128 -128)" mask="url(#composerHole8)"><mask id="composerHole8" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="#FFFFFF" stroke-width="25.6" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="#FFFFFF"/></g></g>
+    <g transform="translate(666 516) scale(0.5763) translate(-128 -128)" mask="url(#composerHole9)"><mask id="composerHole9" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="#FFFFFF" stroke-width="20.0" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="#FFFFFF"/></g>
   </g>
   <g clip-path="url(#orb)">
     <ellipse cx="500" cy="282" rx="196" ry="70" fill="url(#spec)" opacity="0.55" filter="url(#b4)"/>

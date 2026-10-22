@@ -4,6 +4,7 @@
     <radialGradient id="sheen" cx="0.5" cy="0.35" r="0.85"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.35"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
     <radialGradient id="pearl" cx="0.38" cy="0.3" r="0.85"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.6" stop-color="#FFF4F0"/><stop offset="1" stop-color="#FFD3DE"/></radialGradient>
     <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="422" y1="372" x2="602" y2="492"><stop offset="0" stop-color="#FF5E62"/><stop offset="1" stop-color="#8E44EC"/></linearGradient>
+    <linearGradient id="inkC" gradientUnits="userSpaceOnUse" x1="18" y1="52" x2="238" y2="204"><stop offset="0" stop-color="#FF5E62"/><stop offset="1" stop-color="#8E44EC"/></linearGradient>
     <linearGradient id="baseG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E7D9FF"/><stop offset="0.35" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C9B3F5"/></linearGradient>
     <linearGradient id="spec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
     <filter id="drop" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#5A0F3A" flood-opacity="0.3"/></filter>
@@ -22,8 +23,5 @@
     <path d="M 512 254 C 610 254 690 334 690 432 C 690 498 654 542 620 578 C 598 602 586 622 584 654 L 440 654 C 438 622 426 602 404 578 C 370 542 334 498 334 432 C 334 334 414 254 512 254 Z" fill="url(#pearl)"/>
   </g>
   <ellipse cx="442" cy="320" rx="70" ry="34" transform="rotate(-30 442 320)" fill="url(#spec)"/>
-  <g fill="none" stroke="url(#ink)" stroke-linecap="round" stroke-linejoin="round" stroke-width="34">
-    <polyline points="428,380 494,432 428,484"/>
-    <line x1="526" y1="488" x2="604" y2="488"/>
-  </g>
+  <g transform="translate(512 438) scale(0.9322) translate(-128 -128)" mask="url(#composerHole12)"><mask id="composerHole12" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="url(#inkC)" stroke-width="20.0" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="url(#inkC)"/></g>
 </svg>

@@ -53,12 +53,8 @@
     <rect x="392" y="458" width="240" height="30" fill="#FFB547" opacity="0.18" filter="url(#b8)"/>
   </g>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke="#3CF0A8" stroke-width="26" opacity="0.6" filter="url(#b8)">
-      <polyline points="466,500 502,528 466,556"/><line x1="522" y1="560" x2="560" y2="560"/>
-    </g>
-    <g stroke="#B8FFE0" stroke-width="14">
-      <polyline points="466,500 502,528 466,556"/><line x1="522" y1="560" x2="560" y2="560"/>
-    </g>
+    <g opacity="0.7" filter="url(#b8)"><g transform="translate(512 536) scale(0.5424) translate(-128 -128)" mask="url(#composerHole4)"><mask id="composerHole4" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="#3CF0A8" stroke-width="25.6" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="#3CF0A8"/></g></g>
+    <g transform="translate(512 536) scale(0.5424) translate(-128 -128)" mask="url(#composerHole5)"><mask id="composerHole5" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="#B8FFE0" stroke-width="18.4" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="#B8FFE0"/></g>
   </g>
   <circle cx="348" cy="500" r="30" fill="url(#knob)"/>
   <circle cx="676" cy="500" r="30" fill="url(#knob)"/>

@@ -55,17 +55,17 @@ Doce propuestas con el estilo de los iconos de iOS (fuentes SVG y PNG de 1024 px
 | <img src="Branding/logos/1-bombilla.png" width="128"> | <img src="Branding/logos/2-onda.png" width="128"> | <img src="Branding/logos/3-burbuja.png" width="128"> | <img src="Branding/logos/4-microfono.png" width="128"> |
 | Una idea que se vuelve prompt (`>_`). | La voz (onda) convertida en texto. | Una nota de voz con chispa de IA. | Micrófono con prompt de terminal. |
 
-Segunda colección, con más detalle (degradados, vidrio, brillos y sombras) sobre las mismas tres ideas: idea, voz y prompt.
+Segunda colección, con más detalle (degradados, vidrio, brillos y sombras) sobre las mismas tres ideas: idea, voz y prompt. El prompt se representa con el símbolo [*Composer*](Branding/simbolos) (caja de texto de un chat con IA y botón de enviar) en lugar de `>_`.
 
 | Cristal | Mensaje | Estudio | Terminal |
 |---|---|---|---|
 | <img src="Branding/logos/5-cristal.png" width="128"> | <img src="Branding/logos/6-mensaje.png" width="128"> | <img src="Branding/logos/7-estudio.png" width="128"> | <img src="Branding/logos/8-terminal.png" width="128"> |
-| Bombilla de vidrio cuyo filamento es una onda de voz; `>_` grabado en el casquillo. | Nota de voz de vidrio esmerilado sobre la hoja del prompt, con chispas. | Micrófono de estudio que se enciende como una bombilla; `>_` en el cuerpo. | Ventana de terminal: la voz entra tras el `>` y sale como prompt; la idea llega volando. |
+| Bombilla de vidrio cuyo filamento es una onda de voz; *Composer* grabado en el casquillo. | Nota de voz de vidrio esmerilado sobre la hoja del prompt, con chispas. | Micrófono de estudio que se enciende como una bombilla; *Composer* en el cuerpo. | Ventana de terminal: la voz entra en el *Composer* y sale como prompt; la idea llega volando. |
 
 | Orbe | Libreta | Cubo | Destello |
 |---|---|---|---|
 | <img src="Branding/logos/9-orbe.png" width="128"> | <img src="Branding/logos/10-libreta.png" width="128"> | <img src="Branding/logos/11-cubo.png" width="128"> | <img src="Branding/logos/12-destello.png" width="128"> |
-| Esfera de luz donde las ondas de voz desembocan en `>_`. | Libreta con la idea, la onda y el prompt a mano, y botón de grabar. | Cubo isométrico: idea arriba, voz y prompt en las caras. | Bombilla con `>_` cuyos rayos son un espectro de audio. |
+| Esfera de luz donde las ondas de voz desembocan en el *Composer*. | Libreta con la idea, la onda y el prompt a mano, y botón de grabar. | Cubo isométrico: idea arriba, voz y *Composer* en las caras. | Bombilla con el *Composer* cuyos rayos son un espectro de audio. |
 
 ## Desarrollo
 

@@ -26,8 +26,8 @@
     <rect x="404" y="696" width="216" height="60" rx="20" fill="url(#warmMetal)"/>
   </g>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
-    <g stroke="#FFFFFF" opacity="0.6" transform="translate(0 2)"><polyline points="486,710 502,722 486,734"/><line x1="512" y1="734" x2="536" y2="734"/></g>
-    <g stroke="#3A3E50"><polyline points="486,710 502,722 486,734"/><line x1="512" y1="734" x2="536" y2="734"/></g>
+    <g opacity="0.6" transform="translate(0 2)"><g transform="translate(512 722) scale(0.2627) translate(-128 -128)" mask="url(#composerHole1)"><mask id="composerHole1" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="#FFFFFF" stroke-width="22.4" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="#FFFFFF"/></g></g>
+    <g transform="translate(512 722) scale(0.2627) translate(-128 -128)" mask="url(#composerHole2)"><mask id="composerHole2" maskUnits="userSpaceOnUse" x="-60" y="-60" width="376" height="376"><rect x="-60" y="-60" width="376" height="376" fill="#FFF"/><path d="M 192 171 V 141 M 179 153 L 192 140 L 205 153" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask><g fill="none" stroke="#3A3E50" stroke-width="22.4" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="52" width="220" height="152" rx="44"/><path d="M 56 100 H 160 M 56 146 H 112"/></g><circle cx="192" cy="156" r="30" fill="#3A3E50"/></g>
   </g>
   <path d="M 512 160 C 644.5 160 752 267.5 752 400 C 752 486 706 548 660 596 C 628 630 604 652 602 700 L 422 700 C 420 652 396 630 364 596 C 318 548 272 486 272 400 C 272 267.5 379.5 160 512 160 Z" fill="url(#glass)"/>
   <g clip-path="url(#bulbClip)">
