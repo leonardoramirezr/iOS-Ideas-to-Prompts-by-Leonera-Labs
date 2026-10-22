@@ -67,6 +67,10 @@ Segunda colección, con más detalle (degradados, vidrio, brillos y sombras) sob
 | <img src="Branding/logos/9-orbe.png" width="128"> | <img src="Branding/logos/10-libreta.png" width="128"> | <img src="Branding/logos/11-cubo.png" width="128"> | <img src="Branding/logos/12-destello.png" width="128"> |
 | Esfera de luz donde las ondas de voz desembocan en el *Composer*. | Libreta con la idea, la onda y el prompt a mano, y botón de grabar. | Cubo isométrico: idea arriba, voz y *Composer* en las caras. | Bombilla con el *Composer* cuyos rayos son un espectro de audio. |
 
+Variaciones de *Mensaje* (en [`Branding/logos/variaciones`](Branding/logos/variaciones)): sin *Composer*, con un botón de enviar (flecha hacia arriba) en la esquina inferior derecha de la hoja y todas las líneas de texto del mismo color: gris, azul, violeta y turquesa.
+
+<img src="Branding/logos/variaciones/6-mensaje-comparativa.png" width="720">
+
 ## Desarrollo
 
 El proyecto de Xcode se genera con [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
