@@ -46,30 +46,11 @@ Se configuran en *Ajustes* (la API key se guarda en el llavero). Todos se usan c
 
 Gemini y Workers AI no exponen `/audio/transcriptions`, por eso la transcripción usa la alternativa indicada. Las grabaciones se guardan en WAV de 16 kHz mono, un formato que aceptan los cuatro.
 
-## Logos
+## Icono
 
-Doce propuestas con el estilo de los iconos de iOS (fuentes SVG y PNG de 1024 px en [`Branding/logos`](Branding/logos)). Todas van en la app: se elige en *Ajustes › Icono de la app*. *Bombilla* es el icono principal.
+*Mensaje*: una nota de voz de vidrio esmerilado (la idea grabada) sobre la hoja del prompt, con un botón de enviar y chispas. Fuente SVG y PNG de 1024 px en [`Branding/logos`](Branding/logos).
 
-| Bombilla | Onda | Burbuja | Micrófono |
-|---|---|---|---|
-| <img src="Branding/logos/1-bombilla.png" width="128"> | <img src="Branding/logos/2-onda.png" width="128"> | <img src="Branding/logos/3-burbuja.png" width="128"> | <img src="Branding/logos/4-microfono.png" width="128"> |
-| Una idea que se vuelve prompt (`>_`). | La voz (onda) convertida en texto. | Una nota de voz con chispa de IA. | Micrófono con prompt de terminal. |
-
-Segunda colección, con más detalle (degradados, vidrio, brillos y sombras) sobre las mismas tres ideas: idea, voz y prompt. El prompt se representa con el símbolo [*Composer*](Branding/simbolos) (caja de texto de un chat con IA y botón de enviar) en lugar de `>_`.
-
-| Cristal | Mensaje | Estudio | Terminal |
-|---|---|---|---|
-| <img src="Branding/logos/5-cristal.png" width="128"> | <img src="Branding/logos/6-mensaje.png" width="128"> | <img src="Branding/logos/7-estudio.png" width="128"> | <img src="Branding/logos/8-terminal.png" width="128"> |
-| Bombilla de vidrio cuyo filamento es una onda de voz; *Composer* grabado en el casquillo. | Nota de voz de vidrio esmerilado sobre la hoja del prompt, con chispas. | Micrófono de estudio que se enciende como una bombilla; *Composer* en el cuerpo. | Ventana de terminal: la voz entra en el *Composer* y sale como prompt; la idea llega volando. |
-
-| Orbe | Libreta | Cubo | Destello |
-|---|---|---|---|
-| <img src="Branding/logos/9-orbe.png" width="128"> | <img src="Branding/logos/10-libreta.png" width="128"> | <img src="Branding/logos/11-cubo.png" width="128"> | <img src="Branding/logos/12-destello.png" width="128"> |
-| Esfera de luz donde las ondas de voz desembocan en el *Composer*. | Libreta con la idea, la onda y el prompt a mano, y botón de grabar. | Cubo isométrico: idea arriba, voz y *Composer* en las caras. | Bombilla con el *Composer* cuyos rayos son un espectro de audio. |
-
-Variaciones de *Mensaje* (en [`Branding/logos/variaciones`](Branding/logos/variaciones)): sin *Composer*, con un botón de enviar (flecha hacia arriba) en la esquina inferior derecha de la hoja y todas las líneas de texto del mismo color: gris, azul, violeta y turquesa.
-
-<img src="Branding/logos/variaciones/6-mensaje-comparativa.png" width="720">
+<img src="Branding/logos/mensaje.png" width="128">
 
 ## Desarrollo
 

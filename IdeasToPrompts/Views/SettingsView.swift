@@ -84,16 +84,6 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    NavigationLink {
-                        AppIconPickerView()
-                    } label: {
-                        Label("Icono de la app", systemImage: "app.badge")
-                    }
-                } header: {
-                    Text("Apariencia")
-                }
-
-                Section {
                     LabeledContent("Versión", value: Bundle.main.versionDescription)
                 } footer: {
                     Text("Ideas to Prompts by Leonera Labs")
