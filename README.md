@@ -65,6 +65,14 @@ Cuatro propuestas para sustituir `>_`, que se lee como una terminal, por un sím
 |---|---|---|---|
 | Caja de texto de un chat con IA y botón de enviar. | Mensaje para la IA: burbuja con chispa. | Texto que la IA completa: líneas que terminan en chispa. | Instrucción escrita: hoja con chispa. |
 
+Variaciones de *Composer*:
+
+<img src="Branding/simbolos/comparativa-composer.png" width="720">
+
+| Barra | Chispa | Insignia | Enviar chispa |
+|---|---|---|---|
+| Barra de una línea: chispa, texto y enviar. | Caja con la chispa de IA delante del texto. | El botón de enviar sobresale de la esquina. | El botón de enviar es una chispa. |
+
 ## Desarrollo
 
 El proyecto de Xcode se genera con [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
