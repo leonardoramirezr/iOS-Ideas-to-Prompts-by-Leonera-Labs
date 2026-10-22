@@ -55,6 +55,16 @@ Cuatro propuestas con el estilo de los iconos de iOS (fuentes SVG y PNG de 1024 
 | <img src="Branding/logos/1-bombilla.png" width="128"> | <img src="Branding/logos/2-onda.png" width="128"> | <img src="Branding/logos/3-burbuja.png" width="128"> | <img src="Branding/logos/4-microfono.png" width="128"> |
 | Una idea que se vuelve prompt (`>_`). | La voz (onda) convertida en texto. | Una nota de voz con chispa de IA. | Micrófono con prompt de terminal. |
 
+### Símbolos de prompt
+
+Cuatro propuestas para sustituir `>_`, que se lee como una terminal, por un símbolo de prompt para un LLM. Son SVG monocromos (trazo de 16 sobre 256, color `currentColor`) en [`Branding/simbolos`](Branding/simbolos).
+
+<img src="Branding/simbolos/comparativa.png" width="720">
+
+| Composer | Burbuja | Líneas | Hoja |
+|---|---|---|---|
+| Caja de texto de un chat con IA y botón de enviar. | Mensaje para la IA: burbuja con chispa. | Texto que la IA completa: líneas que terminan en chispa. | Instrucción escrita: hoja con chispa. |
+
 ## Desarrollo
 
 El proyecto de Xcode se genera con [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
