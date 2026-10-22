@@ -80,7 +80,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Repositorios")
                 } footer: {
-                    Text("Con un token clásico de GitHub, la IA elige el repositorio de las ideas de tipo «Edición».")
+                    Text("Con un token clásico de GitHub, la IA elige el repositorio de las ideas de tipo «Edición» y «Resolver bug».")
                 }
 
                 Section {
@@ -284,7 +284,7 @@ struct GitHubSettingsView: View {
                     Task { await runTest() }
                 }
             } footer: {
-                Text("Al procesar una idea de tipo «Edición», la app obtiene todos tus repositorios y envía su nombre y descripción al proveedor de inferencia para que elija a cuál se refiere la idea.")
+                Text("Al procesar una idea de tipo «Edición» o «Resolver bug», la app obtiene todos tus repositorios y envía su nombre y descripción al proveedor de inferencia para que elija a cuál se refiere la idea.")
             }
         }
         .navigationTitle("GitHub")

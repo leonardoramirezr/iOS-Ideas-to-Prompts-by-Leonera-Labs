@@ -92,6 +92,17 @@ enum DefaultPrompts {
     [[[Cambios/Funciones/Correcciones solicitadas]]]
     """
 
+    /// Base prompt del tipo de idea "Resolver bug": como "Edición", se abre en la app de Claude
+    /// con el repositorio que elige la IA.
+    static let bugFixBase = """
+    # Contexto
+    [[[Contexto: dónde ocurre el bug y qué se estaba haciendo]]]
+    # Problema
+    [[[Problema: qué pasa actualmente]]]
+    # Resultado esperado
+    [[[Resultado esperado: qué debería pasar]]]
+    """
+
     /// Base prompt sugerido al crear un tipo de idea nuevo.
     static let newTypeBase = """
     # Requerimientos base.

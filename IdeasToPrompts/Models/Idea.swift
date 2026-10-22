@@ -25,7 +25,7 @@ struct Idea: Identifiable, Codable, Hashable {
     var prompt: String?
     var lastError: String?
     var processedAt: Date?
-    /// Solo en ideas de tipo "Edición": repositorio (`owner/repo`) que eligió la IA y su rama principal.
+    /// Solo en ideas de tipo "Edición" o "Resolver bug": repositorio (`owner/repo`) que eligió la IA y su rama principal.
     var repository: String?
     var branch: String?
 
@@ -43,8 +43,8 @@ struct Idea: Identifiable, Codable, Hashable {
 
     var isProcessed: Bool { status == .processed }
 
-    /// Idea de tipo "Edición", que se abre en la app de Claude.
-    var isEdit: Bool { typeID == IdeaType.editID }
+    /// Idea de tipo "Edición" o "Resolver bug", que se abre en la app de Claude.
+    var opensInClaude: Bool { IdeaType.claudeTypeIDs.contains(typeID) }
 
     /// Título visible: el generado por la IA o "Idea #N" si aún no se procesa.
     var displayTitle: String {

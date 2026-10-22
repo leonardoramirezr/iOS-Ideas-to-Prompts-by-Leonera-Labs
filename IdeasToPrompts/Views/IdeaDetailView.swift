@@ -27,7 +27,7 @@ struct IdeaDetailView: View {
             VStack(alignment: .leading, spacing: 20) {
                 header(idea)
                 statusCard(idea, stage: stage)
-                if idea.isEdit, let prompt = idea.prompt, !prompt.isEmpty {
+                if idea.opensInClaude, let prompt = idea.prompt, !prompt.isEmpty {
                     claudeCard(idea)
                 }
                 if let fileName = idea.audioFileName {

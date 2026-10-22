@@ -22,7 +22,7 @@ final class SettingsStore {
     var configs: [String: ProviderConfig] { didSet { save() } }
     var transformPrompt: String { didSet { save() } }
     var ideaTypes: [IdeaType] { didSet { save() } }
-    /// Último modo elegido para abrir las ideas de tipo "Edición" en Claude.
+    /// Último modo elegido para abrir las ideas de tipo "Edición" o "Resolver bug" en Claude.
     var claudeMode: ClaudeMode { didSet { save() } }
     /// Último texto elegido (prompt o transcripción) para enviar a Claude.
     var claudeContent: ClaudeContent { didSet { save() } }
