@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2EE6C8"/><stop offset="0.5" stop-color="#1E8BEA"/><stop offset="1" stop-color="#3B39D6"/></linearGradient>
+    <radialGradient id="sheen" cx="0.25" cy="0.1" r="0.85"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF2F9"/></linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2F6BF0"/><stop offset="1" stop-color="#7A4DF0"/></linearGradient>
+    <linearGradient id="wave" gradientUnits="userSpaceOnUse" x1="220" y1="0" x2="560" y2="0"><stop offset="0" stop-color="#10C7BE"/><stop offset="0.5" stop-color="#2F6BF0"/><stop offset="1" stop-color="#7A4DF0"/></linearGradient>
+    <linearGradient id="frost" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.80"/><stop offset="1" stop-color="#F2F7FF" stop-opacity="0.62"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.2"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.7"/></linearGradient>
+    <radialGradient id="star" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFF1B8"/></radialGradient>
+    <filter id="b18" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feGaussianBlur stdDeviation="18"/></filter>
+    <filter id="b14" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="b4" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="cardSh" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feDropShadow dx="0" dy="26" stdDeviation="26" flood-color="#0B1A6B" flood-opacity="0.3"/></filter>
+    <filter id="bubSh" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#0B1A6B" flood-opacity="0.28"/></filter>
+    <filter id="starGlow" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1424" height="1424"><feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#FFE27A" flood-opacity="0.9"/></filter>
+<g id="card">
+      <rect x="0" y="0" width="420" height="520" rx="58" fill="url(#paper)"/>
+      <rect x="52" y="80" width="256" height="24" rx="12" fill="#A9C4FA"/><rect x="52" y="140" width="316" height="24" rx="12" fill="#A9C4FA"/><rect x="52" y="200" width="278" height="24" rx="12" fill="#A9C4FA"/><rect x="52" y="260" width="306" height="24" rx="12" fill="#A9C4FA"/><rect x="52" y="320" width="214" height="24" rx="12" fill="#A9C4FA"/>
+      <circle cx="346" cy="446" r="46" fill="#2F6BF0"/>
+      <path d="M 346 470 V 422 M 326 441 L 346 421 L 366 441" fill="none" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <clipPath id="bub"><path d="M 290 500 H 474 A 132 132 0 0 1 474 764 H 290 C 262 764 240 758 222 748 C 204 772 178 792 148 804 C 166 776 172 748 168 720 C 162 700 158 680 158 632 A 132 132 0 0 1 290 500 Z"/></clipPath>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect width="1024" height="1024" fill="url(#sheen)"/>
+  <g transform="translate(22 40)">
+  <use href="#card" transform="translate(386 168) rotate(8 210 260)" filter="url(#cardSh)"/>
+  <g filter="url(#bubSh)">
+    <g clip-path="url(#bub)">
+      <rect width="1024" height="1024" fill="#9CC6F5"/>
+      <rect width="1024" height="1024" fill="url(#bg)" opacity="0.55"/>
+      <use href="#card" transform="translate(386 168) rotate(8 210 260)" filter="url(#b18)"/>
+      <rect width="1024" height="1024" fill="url(#frost)"/>
+    </g>
+  </g>
+  <g clip-path="url(#bub)" fill="none">
+    <path d="M 290 500 H 474 A 132 132 0 0 1 474 764 H 290 C 262 764 240 758 222 748 C 204 772 178 792 148 804 C 166 776 172 748 168 720 C 162 700 158 680 158 632 A 132 132 0 0 1 290 500 Z" stroke="url(#edge)" stroke-width="8"/>
+  </g>
+  <rect x="221.5" y="610.0" width="13" height="44" rx="6.5" fill="url(#wave)"/><rect x="244.0" y="594.0" width="13" height="76" rx="6.5" fill="url(#wave)"/><rect x="266.5" y="572.0" width="13" height="120" rx="6.5" fill="url(#wave)"/><rect x="289.0" y="588.0" width="13" height="88" rx="6.5" fill="url(#wave)"/><rect x="311.5" y="557.0" width="13" height="150" rx="6.5" fill="url(#wave)"/><rect x="334.0" y="540.0" width="13" height="184" rx="6.5" fill="url(#wave)"/><rect x="356.5" y="568.0" width="13" height="128" rx="6.5" fill="url(#wave)"/><rect x="379.0" y="534.0" width="13" height="196" rx="6.5" fill="url(#wave)"/><rect x="401.5" y="562.0" width="13" height="140" rx="6.5" fill="url(#wave)"/><rect x="424.0" y="584.0" width="13" height="96" rx="6.5" fill="url(#wave)"/><rect x="446.5" y="552.0" width="13" height="160" rx="6.5" fill="url(#wave)"/><rect x="469.0" y="578.0" width="13" height="108" rx="6.5" fill="url(#wave)"/><rect x="491.5" y="599.0" width="13" height="66" rx="6.5" fill="url(#wave)"/><rect x="514.0" y="589.0" width="13" height="86" rx="6.5" fill="url(#wave)"/><rect x="536.5" y="610.0" width="13" height="44" rx="6.5" fill="url(#wave)"/>
+  <g filter="url(#starGlow)">
+    <path d="M 256 170 Q 270.72 247.28 348 262 Q 270.72 276.72 256 354 Q 241.28 276.72 164 262 Q 241.28 247.28 256 170 Z" fill="url(#star)"/>
+    <path d="M 338 126 Q 344.4 159.6 378 166 Q 344.4 172.4 338 206 Q 331.6 172.4 298 166 Q 331.6 159.6 338 126 Z" fill="url(#star)"/>
+    <path d="M 176 358 Q 180.16 379.84 202 384 Q 180.16 388.16 176 410 Q 171.84 388.16 150 384 Q 171.84 379.84 176 358 Z" fill="url(#star)" opacity="0.9"/>
+  </g>
+  </g>
+</svg>

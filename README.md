@@ -46,14 +46,11 @@ Se configuran en *Ajustes* (la API key se guarda en el llavero). Todos se usan c
 
 Gemini y Workers AI no exponen `/audio/transcriptions`, por eso la transcripción usa la alternativa indicada. Las grabaciones se guardan en WAV de 16 kHz mono, un formato que aceptan los cuatro.
 
-## Logos
+## Icono
 
-Cuatro propuestas con el estilo de los iconos de iOS (fuentes SVG y PNG de 1024 px en [`Branding/logos`](Branding/logos)). Las cuatro van en la app: se elige en *Ajustes › Icono de la app*. *Bombilla* es el icono principal.
+*Mensaje*: una nota de voz de vidrio esmerilado (la idea grabada) sobre la hoja del prompt, con un botón de enviar y chispas. Fuente SVG y PNG de 1024 px en [`Branding/logos`](Branding/logos).
 
-| Bombilla | Onda | Burbuja | Micrófono |
-|---|---|---|---|
-| <img src="Branding/logos/1-bombilla.png" width="128"> | <img src="Branding/logos/2-onda.png" width="128"> | <img src="Branding/logos/3-burbuja.png" width="128"> | <img src="Branding/logos/4-microfono.png" width="128"> |
-| Una idea que se vuelve prompt (`>_`). | La voz (onda) convertida en texto. | Una nota de voz con chispa de IA. | Micrófono con prompt de terminal. |
+<img src="Branding/logos/mensaje.png" width="128">
 
 ## Desarrollo
 
